@@ -1,0 +1,12 @@
+{
+  "test_supervised_points": 621,
+  "no3_rmse": 0.5441374586197011,
+  "no3_mae": 0.4265105098533937,
+  "no3_nrmse": 0.025097372083932576,
+  "phosphorus_rmse": 1.2634466417082548,
+  "phosphorus_mae": 1.1111639102683935,
+  "phosphorus_nrmse": 0.02930727093194413,
+  "discharge_rmse": 0.6615770327228422,
+  "discharge_mae": 0.5078882332201358,
+  "discharge_nrmse": 0.16004745195742892
+}
