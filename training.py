@@ -1,7 +1,3 @@
-# ============================================================================
-# Module 4: training.py - Training and evaluation
-# ============================================================================
-
 import numpy as np
 import torch
 from tqdm import tqdm
