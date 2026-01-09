@@ -1,4 +1,4 @@
-# ECG-Greedy: Multi-Modal ECG Classification with CWT Scalograms & Phasograms 
+# Spatio-Temporal Deep Learning for Multi-Contaminant Forecasting in Sparse Watershed Networks
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)  
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)](https://python.org)  
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0-orange)](https://pytorch.org)
