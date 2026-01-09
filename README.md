@@ -8,6 +8,13 @@
 ## Evaluation metrics on test set
 ![alt text](figures/05_metrics_table.png)
 
+## Spatial Pollutant maps
+![alt text](figures/02_spatial_maps.png)
+
+## Parity maps
+![alt text](figures/04_parity_diagrams.png)
+
+
 ## Setup
 
 We are using Python version 3.11.9
