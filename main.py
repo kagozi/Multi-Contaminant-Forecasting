@@ -112,7 +112,10 @@ def main():
     print("CREATING MODEL")
     print("="*70)
     
-    f_in = F + len(cfg.contaminants) + 1
+    # f_in = F + len(cfg.contaminants) + 1
+    C = len(cfg.contaminants)
+    f_in = F + 2 * C
+
     model = SpatialGRUMultiContaminantForecaster(
         num_basins=B,
         f_in=f_in,
