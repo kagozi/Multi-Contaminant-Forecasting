@@ -78,7 +78,18 @@ def make_synthetic_watershed_multicontaminant(B: int, T: int, F: int, S: int, se
         y_q[:, k] = np.maximum(y_q[:, k], 0.0)
 
     # Irregular observations
+    # m_obs = (rng.random((B, T, 1)) < 0.1).astype(np.float32)
     m_obs = (rng.random((B, T, 1)) < 0.1).astype(np.float32)
+
+    # Apply missingness consistently to each contaminant (shared sampling pattern)
+    y_no3_nan = y_no3.copy()
+    y_p_nan   = y_p.copy()
+    y_q_nan   = y_q.copy()
+
+    y_no3_nan[m_obs[:, :, 0] < 0.5] = np.nan
+    y_p_nan[m_obs[:, :, 0] < 0.5]   = np.nan
+    y_q_nan[m_obs[:, :, 0] < 0.5]   = np.nan
+
 
     return {
         "X_dyn": X_dyn,
@@ -155,11 +166,25 @@ class SpatioTemporalMultiContaminantDataset(Dataset):
         
         y_hist_list = [torch.nan_to_num(self.y_dict[cont][b, t - L : t, :], nan=0.0) for cont in self.contaminants]
         y_hist_filled = torch.cat(y_hist_list, dim=-1)
-        m_hist = (torch.isnan(self.y_dict[self.contaminants[0]][b, t - L : t, :]).logical_not()).float()
+        # m_hist = (torch.isnan(self.y_dict[self.contaminants[0]][b, t - L : t, :]).logical_not()).float()
+        y_hist_list, m_hist_list = [], []
+        for cont in self.contaminants:
+            y_h = self.y_dict[cont][b, t-L:t, :]           # (L,1) with NaNs
+            m_h = (~torch.isnan(y_h)).float()              # (L,1)
+            y_hist_list.append(torch.nan_to_num(y_h, nan=0.0))
+            m_hist_list.append(m_h)
+
+        y_hist_filled = torch.cat(y_hist_list, dim=-1)     # (L,C)
+        m_hist = torch.cat(m_hist_list, dim=-1)            # (L,C)
+
 
         y_target_list = [torch.nan_to_num(self.y_dict[cont][b, t + H, :], nan=0.0) for cont in self.contaminants]
         y_target = torch.cat(y_target_list, dim=-1)
-        m_t = self.m_train[b, t + H, :]
+        # m_t = self.m_train[b, t + H, :]
+        # m_t = self.m_train[b, t + H, :].repeat(self.contaminants)  # (C,)
+        C = len(self.contaminants)
+        m_t = self.m_train[b, t + H, :].repeat(C)  # (C,)
+
 
         seq_in = torch.cat([x_dyn, y_hist_filled, m_hist], dim=-1)
 

@@ -1,12 +1,12 @@
 {
   "test_supervised_points": 621,
-  "no3_rmse": 0.5441374586197011,
-  "no3_mae": 0.4265105098533937,
-  "no3_nrmse": 0.025097372083932576,
-  "phosphorus_rmse": 1.2634466417082548,
-  "phosphorus_mae": 1.1111639102683935,
-  "phosphorus_nrmse": 0.02930727093194413,
-  "discharge_rmse": 0.6615770327228422,
-  "discharge_mae": 0.5078882332201358,
-  "discharge_nrmse": 0.16004745195742892
+  "no3_rmse": 0.6078883178266677,
+  "no3_mae": 0.4894110254235506,
+  "no3_nrmse": 0.028037767031647193,
+  "phosphorus_rmse": 0.7377697316812101,
+  "phosphorus_mae": 0.6288392025491466,
+  "phosphorus_nrmse": 0.01711351844865779,
+  "discharge_rmse": 0.7265393324306656,
+  "discharge_mae": 0.5401755822837448,
+  "discharge_nrmse": 0.1757630074064157
 }
